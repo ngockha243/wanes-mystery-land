@@ -89,7 +89,7 @@ Material:
     - _FoamColor: {r: 1, g: 1, b: 1, a: 0}
     - _NormalSpeed: {r: 0.1, g: -0.1, b: 0, a: 0}
     - _RipplesColor: {r: 0.21503183, g: 0.96551794, b: 1.838176, a: 0}
-    - _RipplesScale: {r: 5, g: 0, b: 0, a: 0}
+    - _RipplesScale: {r: 20, g: 0, b: 0, a: 0}
     - _RipplesSpeed: {r: 0.75, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &5519824106547356063
