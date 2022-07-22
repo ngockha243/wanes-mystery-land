@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SkyNoon
+  m_Name: SkyMidnightMat
   m_Shader: {fileID: 104, guid: 0000000000000000f000000000000000, type: 0}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -21,19 +21,19 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BackTex:
-        m_Texture: {fileID: 2800000, guid: 988a47c87043b1f4597329d87c8c5f9e, type: 3}
+        m_Texture: {fileID: 2800000, guid: 1a40cbba43c28844d9d5434d798a3784, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DownTex:
-        m_Texture: {fileID: 2800000, guid: ca936d5ad9282044293249963704b9ce, type: 3}
+        m_Texture: {fileID: 2800000, guid: b37a0b3bf146f5748a2ae0b5856eba8f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _FrontTex:
-        m_Texture: {fileID: 2800000, guid: db891bbb0f035a340a64f1550499d24b, type: 3}
+        m_Texture: {fileID: 2800000, guid: f29a90fb9c5a19045b7f1897b30c5777, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _LeftTex:
-        m_Texture: {fileID: 2800000, guid: 4f6bec75bfe65ad49a0826debe902b30, type: 3}
+        m_Texture: {fileID: 2800000, guid: 8ccea35bb4bd8a9479b160117e0761f3, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -41,11 +41,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _RightTex:
-        m_Texture: {fileID: 2800000, guid: 1ded1ac4a932ce548b131efe140dee3d, type: 3}
+        m_Texture: {fileID: 2800000, guid: b712a49fc11d9fd4dbf18d71b3f53e31, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _UpTex:
-        m_Texture: {fileID: 2800000, guid: d8abefee4b4a16546abf8b0a732a7e40, type: 3}
+        m_Texture: {fileID: 2800000, guid: e211c2ca9055575428e0614590e7e651, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
