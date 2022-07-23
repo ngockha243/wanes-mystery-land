@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
 
     [SerializeField] private float speed = 25f;
-    [SerializeField] private Vector3 velocity;
+    public Vector3 velocity;
 
     float turnSmoothTime = 0.1f;
     float turnSmoothVelocity;
