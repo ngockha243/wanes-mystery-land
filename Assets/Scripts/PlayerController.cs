@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Animator anim;
     private Rigidbody rb;
 
-    [SerializeField] private float speed = 6f;
+    [SerializeField] private float speed = 25f;
     [SerializeField] private Vector3 velocity;
 
     float turnSmoothTime = 0.1f;
@@ -28,13 +28,18 @@ public class PlayerController : MonoBehaviour
     float counterDecrease = 0;
 
     [SerializeField] private ParticleSystem engineLeft;
+    private ParticleSystem.MainModule leftMain;
     [SerializeField] private ParticleSystem engineRight;
-    
+    private ParticleSystem.MainModule rightMain;
+
 
     void Start()
     {
         controller = GetComponent<CharacterController>();
         rb = GetComponent<Rigidbody>();
+
+        leftMain = engineLeft.main;
+        rightMain = engineRight.main;
     }
 
     void Update()
@@ -50,8 +55,8 @@ public class PlayerController : MonoBehaviour
                 slider.value += 1;
                 counterIncrease = 0;
             }
-            engineLeft.startColor = new Color(1, 0.427281f, 0);
-            engineRight.startColor = new Color(1, 0.427281f, 0);
+            leftMain.startColor = new Color(1, 0.427281f, 0);
+            rightMain.startColor = new Color(1, 0.427281f, 0);
         }
         if(!isOnGround)
         {
@@ -61,8 +66,8 @@ public class PlayerController : MonoBehaviour
                 slider.value -= 1;
                 counterDecrease = 0;
             }
-            engineLeft.startColor = new Color(0.04950152f, 0.8034409f, 0.9716981f);
-            engineRight.startColor = new Color(0.04950152f, 0.8034409f, 0.9716981f);
+            leftMain.startColor = new Color(0.04950152f, 0.8034409f, 0.9716981f);
+            rightMain.startColor = new Color(0.04950152f, 0.8034409f, 0.9716981f);
         }
         if(slider.value == 0)
         {
@@ -73,6 +78,12 @@ public class PlayerController : MonoBehaviour
     private void Move()
     {
         isOnGround = Physics.CheckSphere(transform.position, groundCheckDistance, groundMask);
+        if(isOnGround){
+            speed = 25f;
+        }
+        else{
+            speed = 50f;
+        }
         if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
         {
             // Get horizontal and vertical
@@ -114,6 +125,7 @@ public class PlayerController : MonoBehaviour
     
     private void Fly()
     {
+        speed = 50f;
         velocity.y = Mathf.Sqrt(flyHeight * -2f * gravity);
     }
 }
