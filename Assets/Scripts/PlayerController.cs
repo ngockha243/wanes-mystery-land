@@ -23,15 +23,18 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float groundCheckDistance;
     [SerializeField] private LayerMask groundMask;
     [SerializeField] private float gravity;
-
-    // Power Slider
-    [SerializeField] private Slider slider;
     
 
     [SerializeField] private float flyHeight;
 
+    // Mana bar
+
     float counterIncrease = 0;
     float counterDecrease = 0;
+
+
+    int powerPoint = 0;
+    [SerializeField] private Image[] power;
 
     // Engine
     [SerializeField] private ParticleSystem engineLeft;
@@ -47,6 +50,8 @@ public class PlayerController : MonoBehaviour
 
         leftMain = engineLeft.main;
         rightMain = engineRight.main;
+
+        DisplayPower();
     }
 
     void Update()
@@ -60,8 +65,9 @@ public class PlayerController : MonoBehaviour
             counterIncrease += Time.deltaTime;
             if(counterIncrease > 2)
             {
-                slider.value += 1;
+                powerPoint += 1;
                 counterIncrease = 0;
+                DisplayPower();
             }
             leftMain.startColor = new Color(1, 0.427281f, 0);
             rightMain.startColor = new Color(1, 0.427281f, 0);
@@ -73,14 +79,15 @@ public class PlayerController : MonoBehaviour
             counterDecrease += Time.deltaTime;
             if (counterDecrease > 1)
             {
-                slider.value -= 1;
+                powerPoint -= 1;
                 counterDecrease = 0;
+                DisplayPower();
             }
             leftMain.startColor = new Color(0.04950152f, 0.8034409f, 0.9716981f);
             rightMain.startColor = new Color(0.04950152f, 0.8034409f, 0.9716981f);
         }
         // When power = 0: pull character to ground
-        if(slider.value == 0)
+        if(powerPoint == 0)
         {
             velocity.y -= 0.5f;
         }
@@ -130,9 +137,13 @@ public class PlayerController : MonoBehaviour
         }
 
         // Fly
-        if (Input.GetKeyDown(KeyCode.Space) && slider.value > 0)
+        if (Input.GetKeyDown(KeyCode.Space) && powerPoint > 0)
         {
             Fly();
+        }
+        if(!Physics.CheckSphere(transform.position, flyHeight, groundMask) && powerPoint != 0)
+        {
+            velocity.y = 0;
         }
 
         // Pull character to ground
@@ -144,5 +155,17 @@ public class PlayerController : MonoBehaviour
     {
         speed = 50f;
         velocity.y = Mathf.Sqrt(flyHeight * -2f * gravity);
+        
+    }
+
+    void DisplayPower(){
+        for(int i = 0; i < 10; i++){
+            if(i < powerPoint){
+                power[i].enabled = true;
+            }
+            else{
+                power[i].enabled = false;
+            }
+        }
     }
 }
