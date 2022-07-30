@@ -43,6 +43,7 @@ public class PlayerController : MonoBehaviour
     private ParticleSystem.MainModule rightMain;
 
 
+
     void Start()
     {
         // Get CharacterController
@@ -93,7 +94,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void Move()
+    public void Move()
     {
         isOnGround = Physics.CheckSphere(transform.position, groundCheckDistance, groundMask);
         // Double speed when character fly
@@ -141,21 +142,25 @@ public class PlayerController : MonoBehaviour
         {
             Fly();
         }
-        if(!Physics.CheckSphere(transform.position, flyHeight, groundMask) && powerPoint != 0)
-        {
-            velocity.y = 0;
+        else{
+            // Pull character to ground
+            velocity.y += gravity * Time.deltaTime;
+            controller.Move(velocity * Time.deltaTime);
         }
-
-        // Pull character to ground
-        velocity.y += gravity * Time.deltaTime;
-        controller.Move(velocity * Time.deltaTime);
     }
     
     private void Fly()
     {
         speed = 50f;
         velocity.y = Mathf.Sqrt(flyHeight * -2f * gravity);
-        
+        if(!Physics.CheckSphere(transform.position, 10f, groundMask) && !isOnGround)
+        {
+            velocity.y = 0;
+        }
+        else
+        {
+            velocity.y -= 0.5f;
+        }
     }
 
     void DisplayPower(){
