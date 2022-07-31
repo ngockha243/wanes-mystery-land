@@ -1,12 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
 public class EnergyController : MonoBehaviour
 {
-    private float time = 120f;
+    public float time = 0f;
     [SerializeField] private bool IsPlayerNearby = false;
     public bool IsEnergyOn = false;
     [SerializeField] private TextMeshPro EnergyAlertText;
