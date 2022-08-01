@@ -26,7 +26,7 @@ public class EnergyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(IsPlayerNearby)
+        if(IsPlayerNearby && !IsEnergyOn)
         {
             TurnOnEnergyText.text = "Turn on [F]";
             if(Input.GetKeyUp(KeyCode.F))

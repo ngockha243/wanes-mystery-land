@@ -10,7 +10,8 @@ public class GhostController : MonoBehaviour
     private float two = -600f;
     private float three = 200f;
     private float four = 140f;
-    [SerializeField] private Transform player;
+    [SerializeField] private GameObject player;
+    private Transform trans;
 
     NavMeshAgent navMeshAgent;
     private Animator anim;
@@ -28,12 +29,15 @@ public class GhostController : MonoBehaviour
         navMeshAgent.isStopped = false;
         speedWalk = navMeshAgent.speed;
         speedRun = speedWalk + 500;
+        trans = player.transform;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Vector3.Distance(transform.position, player.transform.position) <= 50f)
+        
+        trans = player.transform;
+        if(Vector2.Distance(new Vector2(transform.position.x, transform.position.z), new Vector2(trans.position.x, trans.position.z)) <= 50f)
         {
             Chasing();
         }
@@ -50,6 +54,11 @@ public class GhostController : MonoBehaviour
                 
             }
         }
+        
+        if(Vector2.Distance(new Vector2(transform.position.x, transform.position.z), new Vector2(trans.position.x, trans.position.z)) <= 10f)
+        {
+            Stop();
+        }
     }
     void Patroling()
     {
@@ -64,10 +73,10 @@ public class GhostController : MonoBehaviour
 
     void Chasing()
     {
-        if(Vector3.Distance(transform.position, player.position) >= 5f)
+        if(Vector2.Distance(new Vector2(transform.position.x, transform.position.z), new Vector2(trans.position.x, trans.position.z)) >= 10f)
         {
             Move(speedRun);
-            navMeshAgent.SetDestination(new Vector3(player.position.x, 0f, player.position.z));
+            navMeshAgent.SetDestination(new Vector3(trans.position.x, 0f, trans.position.z));
         }
         else
         {
