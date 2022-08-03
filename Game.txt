@@ -1,0 +1,9 @@
+Game:
+	Wane's Mystery Land
+Cốt truyện:
+	Nhân vật chính được triệu hồi đến một vùng đất kỳ lạ. Hay nói cách khác nhân vật chính là sinh vật kỳ lạ
+	đối với vùng đất này. Nhân vật chính phải tìm cách đến được và thu thập những viên đá giúp quay lại quê nhà.
+Bản đồ:
+	Bản đồ 1: Vùng đất của những người xa lạ. Người chơi phải tìm đến những viên pin (Battery) và bật lên để mở những cánh
+		cổng đến những nơi mà không thể đi đến.
+	Bản đồ 2: Hầm ngục mê cung. Người chơi phải vượt qua các cạm bẫy và thoát khỏi mê cung để đến lấy viên đá cuối cùng.
