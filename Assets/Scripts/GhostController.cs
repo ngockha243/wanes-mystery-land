@@ -11,7 +11,9 @@ public class GhostController : MonoBehaviour
     private float three = 200f;
     private float four = 140f;
     [SerializeField] private GameObject player;
+    [SerializeField] private GameObject crystal;
     private Transform trans;
+    private Transform transCrs;
 
     NavMeshAgent navMeshAgent;
     private Animator anim;
@@ -20,26 +22,29 @@ public class GhostController : MonoBehaviour
     private float speedWalk;
     private float speedRun;
 
+    // private bool attack=false;
+
     void Start()
     {
+        transCrs = crystal.GetComponent<Transform>();
         navMeshAgent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
         SetNewDestination();
 
         navMeshAgent.isStopped = false;
         speedWalk = navMeshAgent.speed;
-        speedRun = speedWalk + 500;
+        speedRun = speedWalk + 2000;
         trans = player.transform;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         
         trans = player.transform;
-        if(Vector2.Distance(new Vector2(transform.position.x, transform.position.z), new Vector2(trans.position.x, trans.position.z)) <= 50f)
+        if(Vector2.Distance(new Vector2(transform.position.x, transform.position.z), new Vector2(trans.position.x, trans.position.z)) <= 150f || Vector2.Distance(new Vector2(transCrs.position.x, transCrs.position.z), new Vector2(trans.position.x, trans.position.z)) <= 150f)
         {
-            Chasing();
+            Defend();
         }
         else
         {
@@ -55,10 +60,6 @@ public class GhostController : MonoBehaviour
             }
         }
         
-        if(Vector2.Distance(new Vector2(transform.position.x, transform.position.z), new Vector2(trans.position.x, trans.position.z)) <= 10f)
-        {
-            Stop();
-        }
     }
     void Patroling()
     {
@@ -71,17 +72,24 @@ public class GhostController : MonoBehaviour
         navMeshAgent.speed = speed;
     }
 
-    void Chasing()
+    void Defend()
     {
-        if(Vector2.Distance(new Vector2(transform.position.x, transform.position.z), new Vector2(trans.position.x, trans.position.z)) >= 10f)
+        if(Vector2.Distance(new Vector2(transCrs.position.x, transCrs.position.z), new Vector2(transform.position.x, transform.position.z)) >=10f)
         {
+
             Move(speedRun);
-            navMeshAgent.SetDestination(new Vector3(trans.position.x, 0f, trans.position.z));
+            navMeshAgent.SetDestination(new Vector3(-625.2f, 0f, 177.7f));
         }
         else
         {
-            Stop();
+            Attack();
         }
+    }
+    void Attack()
+    {
+        Stop();
+
+        Debug.Log("123");
     }
 
     void Stop()
